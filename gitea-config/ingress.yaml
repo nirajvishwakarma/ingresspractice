@@ -1,0 +1,23 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: my-gitea-ingress
+  namespace: gitea-repo
+  # annotations:
+  # cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+        #  tls:
+        #  - hosts:
+        #    - niraj.com
+      #    secretName: tls-gitea
+  rules:
+  - host: niraj1.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: my-gitea-service
+            port:
+              number: 3000
